@@ -31,6 +31,11 @@ namespace NetCoreIdentity.Controllers
                     ModelState.AddModelError("", "Çok fazla başarısız giriş denemesi yaptığınız için hesabınız geçici süreyle kilitlenmiştir");
                     return View("Index", model);
                 }
+                if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError("", "Giriş yapabilmeniz için, email adresinizi doğrulamanız gerekmektedir.");
+                    return View("Index", model);
+                }
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Panel");
