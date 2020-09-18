@@ -27,6 +27,7 @@ namespace NetCoreIdentity
             services.ConfigureApplicationCookie(opt =>
             {
                 opt.LoginPath = new PathString("/Home/Index");
+                opt.AccessDeniedPath = new PathString("/Home/AccessDenied");
                 opt.Cookie.HttpOnly = true;
                 opt.Cookie.Name = "NetCoreIndetityCookie";
                 opt.Cookie.SameSite = SameSiteMode.Strict;

@@ -1,45 +1,46 @@
 ﻿@model UserUpdateViewModel
 @{
-    ViewData["Title"] = "UpdateUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h3 class="modal-header">Bilgilerimi Güncelle</h3>
 
-<form asp-action="UpdateUser" asp-controller="Panel" method="post" enctype="multipart/form-data" class="w-75 mx-auto p-3 bg-light">
-    <div class="form-group">
-        <div class="row">
-            <div class="col-md-4">
-                <label>Profil Resminiz</label>
-                <img src="~/img/@Model.PictureUrl" alt="@Model.Name" class="card-img" />
-            </div>
-            <div class="col-md-8">
-                <input type="file" asp-for="Picture" class="form-control-file" />
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <span asp-validation-for="Name" class="text-danger"></span>
-        <input asp-for="Name" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="SurName"></label>
-        <span asp-validation-for="SurName" class="text-danger"></span>
-        <input asp-for="SurName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <span asp-validation-for="Email" class="text-danger"></span>
-        <input asp-for="Email" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="PhoneNumber"></label>
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-        <input asp-for="PhoneNumber" class="form-control" />
-    </div>
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="container-fluid">
     <div class="row">
-        <button class="btn btn-info">Kaydet</button>
+        <form asp-action="UpdateUser" asp-controller="Panel" method="post" enctype="multipart/form-data" class="w-75 mx-auto p-3 bg-light">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Profil Resminiz</label>
+                    <img src="~/img/@Model.PictureUrl" alt="@Model.Name" class="card-img" />
+                </div>
+                <div class="col-md-8">
+                    <input type="file" asp-for="Picture" class="form-control-file" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="SurName"></label>
+                <span asp-validation-for="SurName" class="text-danger"></span>
+                <input asp-for="SurName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                <input asp-for="PhoneNumber" class="form-control" />
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <button class="btn btn-info">Kaydet</button>
+        </form>
     </div>
-</form>
+</div>
+
+

@@ -1,12 +1,14 @@
-﻿@model  RoleViewModel
+﻿@model UpdateRoleViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3 class="modal-header">Yetki Ekle</h3>
+<h3 class="modal-header">Bilgilerimi Güncelle</h3>
+
 <div class="container-fluid">
     <div class="row">
-        <form asp-action="AddRole" asp-controller="Role" method="post" class="w-75 p-3 mx-auto">
+        <form asp-action="UpdateRole" asp-controller="Role" method="post" enctype="multipart/form-data" class="w-75 mx-auto p-3 bg-light">
+            <input type="hidden" asp-for="Id"/>
             <div class="form-group">
                 <label asp-for="Name"></label>
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -17,5 +19,3 @@
         </form>
     </div>
 </div>
-
-

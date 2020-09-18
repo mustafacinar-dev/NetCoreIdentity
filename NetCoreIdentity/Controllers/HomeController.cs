@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetCoreIdentity.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class HomeController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -15,6 +16,7 @@ namespace NetCoreIdentity.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
         public IActionResult Index()
         {
             return View(new UserSignInViewModel());
@@ -26,7 +28,7 @@ namespace NetCoreIdentity.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, true);
-                if(result.IsLockedOut)
+                if (result.IsLockedOut)
                 {
                     ModelState.AddModelError("", "Çok fazla başarısız giriş denemesi yaptığınız için hesabınız geçici süreyle kilitlenmiştir");
                     return View("Index", model);
@@ -41,7 +43,7 @@ namespace NetCoreIdentity.Controllers
                     return RedirectToAction("Index", "Panel");
                 }
                 var yanlisGirilme = await _userManager.GetAccessFailedCountAsync(await _userManager.FindByNameAsync(model.UserName));
-                ModelState.AddModelError("", $"Kullanıcı adı veya şifre hatalı {5-yanlisGirilme} giriş denemesi hakkınız kaldı");
+                ModelState.AddModelError("", $"Kullanıcı adı veya şifre hatalı {5 - yanlisGirilme} giriş denemesi hakkınız kaldı");
             }
             return View("Index", model);
         }
@@ -75,6 +77,11 @@ namespace NetCoreIdentity.Controllers
                 }
             }
             return View(model);
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
